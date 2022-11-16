@@ -20,14 +20,14 @@ public class del {
     @Autowired
     RestTemplate restTemplate;
 
-    @ApiOperation(value = "Get Movie in the System ", response = Iterable.class, tags = "getMovie")
+    @ApiOperation(value = "Get Movie in the System ", response = Iterable.class, tags = "getMovieTitre")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Succes"),})
     @HystrixCommand(fallbackMethod = "callMovieServiceAndGetData_Fallback")
     public String callMovieServiceAndGetData(String titre) {
         System.out.println("Getting Movie details for " + titre);
         String response = restTemplate
-                .exchange("http://localhost:8098/getMovie/{movie}"
+                .exchange("http://localhost:8098/getMovieTitre/{titre}"
                         , HttpMethod.GET
                         , null
                         , new ParameterizedTypeReference<String>() {
@@ -39,7 +39,7 @@ public class del {
     }
 
     @SuppressWarnings("unused")
-    @ApiOperation(value = "Get Movie in the System ", response = Iterable.class, tags = "getMovie")
+    @ApiOperation(value = "Get Movie in the System ", response = Iterable.class, tags = "getMovieTitre")
     @ApiResponses(value = {
             @ApiResponse(code = 401, message = "not authorized"),})
     private String callMovieServiceAndGetData_Fallback(String titre) {
