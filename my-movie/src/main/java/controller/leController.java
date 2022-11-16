@@ -54,10 +54,10 @@ public class leController {
         return movies.stream().filter(x -> x.getSortie().equalsIgnoreCase(sortie)).collect(Collectors.toList());
     }
 
-    @ApiOperation(value = "Get specific film in the System ", response = acteur.class, tags = "getActeurFilm")
-    @RequestMapping(value = "/getActeurFilm/{acteur}")
-    public List<acteur> getActeurByFilm(@PathVariable(value = "movie") acteur acteur) {
-        return acteurs.stream().filter(x -> x.getFilmographie().equalsIgnoreCase(acteur)).collect(Collectors.toList());
+    @ApiOperation(value = "Get specific film in the System ", response = acteur.class, tags = "getActeurByFilm")
+    @RequestMapping(value = "/getActeurByFilm/{movie}")
+    public List<acteur> getActeurByFilm(@PathVariable(value = "movie") movie movie) {
+        return acteurs.stream().filter(x -> x.getFilmographie().equals(movie)).collect(Collectors.toList());
     }
 
     @ApiOperation(value = "Get list of Acteur in the System ", response = Iterable.class, tags = "getActeurs")
